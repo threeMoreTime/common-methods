@@ -1,0 +1,17 @@
+formatPassedInfo() {
+      return this.passedList.map(list => {
+        const template = list.template;
+        return this.passedInfo
+          .map(item => {
+            let newStr = template;
+            //0}表示窗口号，{1} 表示号码，{2}表示证件号，{3}表示姓名
+            newStr = newStr
+              .replace(/\{0\}/g, () => item.winNum)
+              .replace(/\{1\}/g, () => item.no)
+              .replace(/\{2\}/g, () => item.identity)
+              .replace(/\{3\}/g, () => item.idName)
+            return newStr;
+          })
+          .reduce((acc, curr) => acc.concat(curr), []);
+      });
+    }
