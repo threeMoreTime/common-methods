@@ -1,3 +1,15 @@
+将一个数组中的多个对象模板信息格式化 
+实例如下：
+//模板信息 
+this.passedList：[{"template":"{1}号已过号"},{""template":"{3}号已过号"}，{""template":"{2}号已过号"}]
+//被格式化数据信息
+this.passedInfo：[{"winNum":1,"no":"A010","identity":"360xxxxxxxxxxx","idName":"张三"},
+{"winNum":1,"no":"A011","identity":"361xxxxxxxxxxx","idName":"李四"},
+{"winNum":1,"no":"A012","identity":"362xxxxxxxxxxx","idName":"王五"},
+{"winNum":1,"no":"A013","identity":"363xxxxxxxxxxx","idName":"赵六"}]
+//计算后返回一个大数组，其中有三个小数组，每个小数组对应一个格式化之后的模板信息，实例返回如下
+[["A010号已过号","A011号已过号","A012号已过号","A013号已过号"],["360xxxxxxxxxxx","361xxxxxxxxxxx","362xxxxxxxxxxx","363xxxxxxxxxxx"],["张三已过号","李四已过号","王五已过号","赵六已过号"]]
+
 formatPassedInfo() {
       return this.passedList.map(list => {
         const template = list.template;
@@ -15,3 +27,8 @@ formatPassedInfo() {
           .reduce((acc, curr) => acc.concat(curr), []);
       });
     }
+
+
+
+
+
