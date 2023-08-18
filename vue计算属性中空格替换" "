@@ -1,0 +1,9 @@
+TextListInfo() {
+      this.textInfo = this.styleDate;
+      return this.textInfo.map(item => {
+        let newStr = item.text;
+        // 将空白字符替换为 空格;、
+        return newStr.replace(/ /g, "\u00A0");
+      });
+    }
+    //&nbsp未生效，使用Unicode中的不间断空格码"\u00A0"解决。 其余还有半角空格"\u0020"（代码中常用），全角空格"\u3000"(中文文章中常用)
