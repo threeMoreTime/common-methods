@@ -1,0 +1,49 @@
+<template>
+  <div>
+        <div
+          :style="{        
+            animationDuration: text.effectSpeed + 's'
+          }"
+          :class="{
+            marquee: text.effectType === 'left',
+            'marquee-right': text.effectType === 'right'
+          }"
+        >
+          {{ 文本内容 }}
+        </div>
+      
+  </div>
+</template>
+
+
+<style scoped>
+@keyframes marquee {
+  0% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(160%);
+  }
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 3s linear infinite;
+}
+
+.marquee-right {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee-right 3s linear infinite;
+}
+</style>
