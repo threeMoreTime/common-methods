@@ -1,0 +1,17 @@
+// 将 CSS 样式字符串转换为 JavaScript 对象
+function getStyleObject(styleString) {
+
+  const regex = /([a-zA-Z-]+)\s*:\s*([^;]+);/g;// 定义正则表达式，用于匹配 CSS 样式字符串中的属性和值
+  
+  let match;// 创建一个空对象，用于存储转换后的样式属性和值
+  
+  const styleObject = {};  // 使用循环遍历匹配样式字符串中的属性和值，并存储到 styleObject 对象中
+  
+  while ((match = regex.exec(styleString)) !== null) {
+    const property = match[1].trim(); // 提取属性并去除首尾空格
+    const value = match[2].trim();    // 提取值并去除首尾空格
+    styleObject[property] = value;    // 将属性和值添加到 styleObject 对象中
+  }
+
+  return styleObject; // 返回转换后的样式对象
+}
