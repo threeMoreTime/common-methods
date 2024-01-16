@@ -7,20 +7,21 @@
  data() {
     return {
         tagName:"span",
-     waitingLists:['{1}','{2}'，'{3}'，'{4}'，'{5}'],
+     waitingLists:['mathCode：{1}','mathCode：{2}'，'mathCode：{3}'，'mathCode：{4}'，'mathCode：{5}'],
     };
   },
   computed:{
       //将{2}渲染成一个span标签，内容为'数字2',样式为 text-align: center;display: inline-block;width: 200px; 
     formatData(){
-        this.waitingLists.map((item)=>{
-            let str = '';
-                str = str.replace(/\{0\}/g,'数字1')
-                str.replace(/\{0\}/g,'<span style="text-align: center;display: inline-block;width: 200px;">数字2</span>')//这种写法会渲染不出样式
-                str.replace(/\{0\}/g,'<${this.tagName}>数字2</this.tagName>') //使用data中的数据能正常渲染标签，样式在style中写
-                str.replace(/\{0\}/g,'数字3')
-                str.replace(/\{0\}/g,'数字4')
-                str.replace(/\{0\}/g,'数字5')
+        return this.waitingLists.map((item)=>{
+           return item.replace(/\{(\d)\}/g, match => {
+          if(match == '{1}') return '数字1'
+           if(match == '{2}') return `<${this.tagName}>数字2</this.tagName>)`//使用data中的数据能正常渲染标签，样式在style中写
+                                    '<span style="text-align: center;display: inline-block;width: 200px;">数字2</span>')//这种写法会渲染不出样式
+                 if(match == '{3}') return '数字3'
+                if(match == '{4}') return '数字4'
+               if(match == '{5}') return '数字5'
+               return match;
         })
     }
   }
