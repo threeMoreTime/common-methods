@@ -1,0 +1,42 @@
+问题简单复现
+<template>
+<div v-for v-for="(item, index) in formatData" v-html="item">
+
+</div>
+<script>
+ data() {
+    return {
+        tagName:"span",
+     waitingLists:['{1}','{2}'，'{3}'，'{4}'，'{5}'],
+    };
+  },
+  computed:{
+      //将{2}渲染成一个span标签，内容为'数字2',样式为 text-align: center;display: inline-block;width: 200px; 
+    formatData(){
+        this.waitingLists.map((item)=>{
+            let str = '';
+                str = str.replace(/\{0\}/g,'数字1')
+                str.replace(/\{0\}/g,'<span style="text-align: center;display: inline-block;width: 200px;">数字2</span>')//这种写法会渲染不出样式
+                str.replace(/\{0\}/g,'<${this.tagName}>数字2</this.tagName>') //使用data中的数据能正常渲染标签，样式在style中写
+                str.replace(/\{0\}/g,'数字3')
+                str.replace(/\{0\}/g,'数字4')
+                str.replace(/\{0\}/g,'数字5')
+        })
+    }
+  }
+</script>
+</template>
+style{
+    //style中写法有两种,都是用到了深度选择器但写法不同，第一种写法如下 >>>span{} 但是这种写法在 sass/less 中不作用。
+    //第二种写法可以兼容sass/less,写法如下：/deep/ span{}
+ >>> span{
+  text-align: center;                                                   
+  display: inline-block;
+  width: 200px;
+}
+
+/deep/ span{
+  text-align: center;
+  display: inline-block;
+  width: 200px;
+}
