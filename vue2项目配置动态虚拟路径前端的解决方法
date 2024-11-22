@@ -1,0 +1,17 @@
+项目环境版本如下
+"vue": "^2.6.11",
+"vue-router": "^3.2.0",
+"axios": "^0.24.0",
+"webpack":"4.41.32",
+问题描述
+项目中使用了动态的 虚拟路径作为 Vue Router 和 Axios 的基础路径。但是，当使用基于路由的懒加载（即动态导入）时，
+Webpack 在生成的代码中会使用 publicPath 来确定异步加载的 chunk（如 chunk-*.js）的路径。
+但是由于 publicPath 是在编译时确定的，动态路径是在运行时根据 window.location.pathname 动态获取的，这就导致了 Webpack 无法正确地找到异步加载的 chunk。
+
+解决方案：
+在运行时动态设置 __webpack_public_path__(必须在main.js的首行引入，确保被最先使用)
+vue.config.js，确保 publicPath 设置为空字符串
+配置路由实例的base路径
+配置axios实例的baseURL路径
+
+图片在文档中
