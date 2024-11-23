@@ -14,4 +14,4 @@ vue.config.js，确保 publicPath 设置为空字符串
 配置路由实例的base路径
 配置axios实例的baseURL路径
 
-图片在文档中
+代码图片在codeImg中
