@@ -1,0 +1,5 @@
+
+
+git config core.ignorecase 命令来检查当前git配置的是否忽略大小写的配置 返回false说明开启,ture说明关闭
+
+git config core.ignorecase false 设置开启文件大小写配置
